@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+if [ "$1" = "--mount" ]; then
+  mount_args="-v $(pwd):$(pwd) -w $(pwd)"
+  image="$2"
+else
+  mount_args=""
+  image="$1"
+fi
+
+docker run -it --rm ${mount_args} -e http_proxy=${http_proxy} -u root "$image" /bin/sh
+
